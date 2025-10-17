@@ -1,11 +1,8 @@
-// @ts-ignore
+import fs from 'node:fs';
 import { transform as SVGTransform } from '@svgr/core';
-import {
-  transform,
-  TransformOptions,
-} from '@winner-fed/bundler-utils/compiled/esbuild';
+import type { TransformOptions } from '@winner-fed/bundler-utils/compiled/esbuild';
+import { transform } from '@winner-fed/bundler-utils/compiled/esbuild';
 import type { Plugin } from '@winner-fed/bundler-vite/compiled/vite';
-import fs from 'fs';
 
 type SVGROption = { [key: string]: any };
 type SVGOOption = { [key: string]: any } | false;
@@ -23,7 +20,7 @@ export default function svgrPlugin(
 ): Plugin {
   return {
     name: 'bundler-vite:svgr',
-    async transform(code, id) {
+    async transform(code: string, id: string) {
       if (id.endsWith('.svg')) {
         let componentCode = code;
         if (svgr) {

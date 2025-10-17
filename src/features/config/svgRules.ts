@@ -1,5 +1,6 @@
-import Config from '@winner-fed/bundler-webpack/compiled/webpack-5-chain';
-import type { IApi } from 'win';
+import { join } from 'node:path';
+import type Config from '@winner-fed/bundler-webpack/compiled/webpack-5-chain';
+import type { IApi } from '@winner-fed/winjs';
 
 interface IOpts {
   config: Config;

@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import {
   crossSpawn,
   importLazy,
@@ -5,9 +7,7 @@ import {
   logger,
   winPath,
 } from '@winner-fed/utils';
-import fs from 'fs';
-import path from 'path';
-import type { IApi } from 'win';
+import type { IApi } from '@winner-fed/winjs';
 import { addDeps } from './depsOnDemand';
 
 export default (api: IApi) => {
@@ -63,7 +63,7 @@ export default (api: IApi) => {
     for (const iconStr of allIcons) {
       const [collect, icon] = iconStr.split(':');
       const iconName = generateIconName({ collect, icon });
-      let svgr;
+      let svgr: string | null | undefined;
       try {
         svgr = await generateSvgr({
           collect,
@@ -83,7 +83,7 @@ export default (api: IApi) => {
                     pkgPath: api.pkgPath,
                     deps: [{ name, version }],
                   });
-                } catch (e) {
+                } catch {
                   throw new Error(`[reactIcons] npm package ${name} not found`);
                 }
                 logger.info(`[reactIcons] install ${name}...`);
@@ -99,7 +99,7 @@ export default (api: IApi) => {
         logger.error(e);
       }
       if (svgr) {
-        code.push(svgr!);
+        code.push(svgr);
         code.push(`export { ${iconName} };`);
       } else {
         if (api.env === 'development') {

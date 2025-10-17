@@ -5,8 +5,8 @@
  * @LastEditTime: 2025-09-26 16:09
  * @Description: config
  */
-import Config from '@winner-fed/bundler-webpack/compiled/webpack-5-chain';
-import type { IApi } from 'win';
+import type Config from '@winner-fed/bundler-webpack/compiled/webpack-5-chain';
+import type { IApi } from '@winner-fed/winjs';
 import { addSVGRules } from './svgRules';
 
 export async function getConfig(config: Config, api: IApi) {

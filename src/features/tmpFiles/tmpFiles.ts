@@ -1,7 +1,7 @@
+import { basename, dirname, join } from 'node:path';
 import { getRoutes } from '@winner-fed/core';
 import { lodash, winPath } from '@winner-fed/utils';
-import { basename, dirname, join } from 'path';
-import type { IApi } from 'win';
+import type { IApi } from '@winner-fed/winjs';
 import { TEMPLATES_DIR } from '../../constants';
 import { getRouteComponents } from './routes';
 

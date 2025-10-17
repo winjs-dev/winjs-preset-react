@@ -1,8 +1,8 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { transform } from '@svgr/core';
-import fs from 'fs';
-import path from 'path';
-import type { IApi } from 'win';
-import { loadIcon } from './loadIcon';
+import type { IApi } from '@winner-fed/winjs';
+import { loadIcon } from './loadIcon.js';
 
 function camelCase(str: string) {
   return str

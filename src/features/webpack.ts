@@ -1,4 +1,5 @@
-import type { IApi } from 'win';
+import type Config from '@winner-fed/bundler-webpack/compiled/webpack-5-chain';
+import type { IApi } from '@winner-fed/winjs';
 import { getConfig } from './config/config';
 
 export default (api: IApi) => {

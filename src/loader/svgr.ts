@@ -1,14 +1,13 @@
 // MIT: https://github.com/gregberge/svgr/blob/main/packages/webpack/src/index.ts
 // TODO: prebuild @svgr/core @svgr/plugin-jsx @svgr/plugin-svgo
-import { Config, State, transform } from '@svgr/core';
-// @ts-ignore
+
+import { normalize } from 'node:path';
+import { callbackify } from 'node:util';
+import { type Config, type State, transform } from '@svgr/core';
 import jsx from '@svgr/plugin-jsx';
-// @ts-ignore
 import svgo from '@svgr/plugin-svgo';
 import { transform as defaultEsbuildTransform } from '@winner-fed/bundler-utils/compiled/esbuild';
 import type { LoaderContext } from '@winner-fed/bundler-webpack/compiled/webpack';
-import { normalize } from 'path';
-import { callbackify } from 'util';
 
 const tranformSvg = callbackify(
   async (contents: string, options: Config, state: Partial<State>) => {
@@ -25,7 +24,7 @@ const tranformSvg = callbackify(
 );
 
 function svgrLoader(this: LoaderContext<Config>, contents: string): void {
-  this.cacheable && this.cacheable();
+  this.cacheable?.();
   const callback = this.async();
 
   const options = this.getOptions();
@@ -40,7 +39,7 @@ function svgrLoader(this: LoaderContext<Config>, contents: string): void {
     caller: {
       name: 'svgr-loader',
       previousExport,
-      defaultPlugins: [svgo, jsx],
+      defaultPlugins: [svgo, jsx] as any,
     },
     filePath: normalize(this.resourcePath),
   };

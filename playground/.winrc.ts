@@ -1,8 +1,13 @@
-import { defineConfig } from 'win';
-
-export default defineConfig({
-  plugins: ['../src'],
-  example: {
-    foo: 'bar',
+export default {
+  npmClient: 'pnpm',
+  presets: ['../dist'],
+  reactIcons: {
+    svgr: {}, // 启用 SVGR
   },
-});
+  routes: [
+    { path: '/', component: 'index' },
+    { path: '/docs', component: 'docs' },
+  ],
+  // vite: {},
+  // rsbuild: {},
+};

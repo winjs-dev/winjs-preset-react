@@ -6,7 +6,7 @@
  * @Description: vite
  */
 import reactPlugin from '@vitejs/plugin-react';
-import type { IApi } from 'win';
+import type { IApi } from '@winner-fed/winjs';
 import svgrPlugin from './svgr';
 
 export default (api: IApi) => {

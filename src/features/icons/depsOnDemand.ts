@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   chalk,
   fsExtra,
@@ -6,9 +8,7 @@ import {
   logger,
   semver,
 } from '@winner-fed/utils';
-import { existsSync } from 'fs';
-import { join } from 'path';
-import type { IApi } from 'win';
+import type { IApi } from '@winner-fed/winjs';
 
 export interface IOnDemandInstallDep {
   name: string;

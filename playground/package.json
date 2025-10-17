@@ -1,19 +1,17 @@
 {
-  "name": "playround",
+  "name": "@example/create-simple",
   "private": true,
-  "version": "0.0.0",
   "scripts": {
-    "dev": "win dev",
     "build": "win build",
-    "postinstall": "win setup",
+    "dev": "win dev",
+    "preview": "win preview --port 9527",
     "setup": "win setup",
-    "start": "npm run dev",
-    "preview": "win preview"
+    "start": "npm run dev"
   },
   "dependencies": {
     "@winner-fed/winjs": "*"
   },
   "devDependencies": {
-    "typescript": "^5.0.3"
+    "cross-env": "^7.0.3"
   }
 }

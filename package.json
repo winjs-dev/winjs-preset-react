@@ -1,5 +1,6 @@
 {
-  "name": "winjs-plugin-template",
+  "name": "@winner-fed/preset-react",
+  "description": "React support for WinJS framework",
   "keywords": [
     "winjs",
     "plugin",
@@ -14,22 +15,14 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/winjs-dev/winjs-plugin-template.git"
+    "url": "git+https://github.com/winjs-dev/winjs-preset-react.git"
   },
   "license": "MIT",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "templates"
   ],
   "scripts": {
     "build": "rslib build",
@@ -49,10 +42,34 @@
     "@rsbuild/core": "^1.4.2",
     "@rslib/core": "^0.10.4",
     "@types/node": "^22.15.34",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
     "@winner-fed/winjs": "*",
     "bumpp": "10.2.3",
     "simple-git-hooks": "^2.13.0",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@iconify/utils": "2.1.1",
+    "@svgr/core": "6.5.1",
+    "@svgr/plugin-jsx": "6.5.1",
+    "@svgr/plugin-svgo": "6.5.1",
+    "@umijs/history": "5.3.1",
+    "@winner-fed/core": "*",
+    "@winner-fed/bundler-utils": "*",
+    "@winner-fed/bundler-webpack": "*",
+    "@winner-fed/bundler-vite": "*",
+    "@babel/plugin-transform-react-jsx": "7.27.1",
+    "@babel/preset-react": "7.27.1",
+    "@rsbuild/plugin-react": "1.4.1",
+    "@rsbuild/plugin-svgr": "1.2.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@winner-fed/renderer-react": "*",
+    "babel-plugin-react-compiler": "19.1.0-rc.3",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.6.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "unplugin-auto-import": "19.1.1"
   },
   "peerDevDependencies": {
     "@winner-fed/winjs": "*"

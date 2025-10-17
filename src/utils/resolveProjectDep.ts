@@ -1,5 +1,5 @@
-import { existsSync } from 'fs';
-import { dirname, join } from 'path';
+import { existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 
 export function resolveProjectDep(opts: {
   pkg: any;
@@ -25,7 +25,7 @@ export function resolveProjectDep(opts: {
       paths: [cwd],
     });
     return dirname(packageJsonPath);
-  } catch (e) {
+  } catch {
     // 如果解析失败，尝试在node_modules中查找
     const nodeModulesPath = join(cwd, 'node_modules', dep);
     if (existsSync(nodeModulesPath)) {

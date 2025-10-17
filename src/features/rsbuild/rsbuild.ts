@@ -7,7 +7,7 @@
  */
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSvgr } from '@rsbuild/plugin-svgr';
-import type { IApi } from 'win';
+import type { IApi } from '@winner-fed/winjs';
 
 export default (api: IApi) => {
   api.describe({

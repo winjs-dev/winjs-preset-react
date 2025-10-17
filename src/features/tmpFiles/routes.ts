@@ -1,7 +1,7 @@
+import { isAbsolute, join } from 'node:path';
 import { componentToChunkName } from '@winner-fed/core';
 import { winPath } from '@winner-fed/utils';
-import { isAbsolute, join } from 'path';
-import type { IApi } from 'win';
+import type { IApi } from '@winner-fed/winjs';
 
 const IMPORT_EMPTY_ROUTE_CJS = `() => Promise.resolve(require('./EmptyRoute'))`;
 const IMPORT_EMPTY_ROUTE_ESM = `() => import('./EmptyRoute')`;
@@ -29,7 +29,7 @@ export async function getRouteComponents(opts: {
         route.file = join(
           opts.api.paths.absTmpPath,
           'pages',
-          route.id.replace(/[\/\-]/g, '_') + '.js',
+          `${route.id.replace(/[/-]/g, '_')}.js`,
         );
       }
       // e.g.

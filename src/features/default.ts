@@ -1,5 +1,5 @@
-import { dirname, join } from 'path';
-import type { IApi } from 'win';
+import { dirname, join } from 'node:path';
+import type { IApi } from '@winner-fed/winjs';
 import { resolveProjectDep } from '../utils/resolveProjectDep';
 
 export default (api: IApi) => {
@@ -74,14 +74,16 @@ export default (api: IApi) => {
     key: 'updateAppDataDeps',
     async fn() {
       // FIXME: force include react & react-dom
-      if (api.appData.deps['react']) {
-        api.appData.deps['react'].version = api.appData.react.version;
+      if (api.appData.deps?.react) {
+        api.appData.deps.react.version = api.appData.react.version;
       }
-      api.appData.deps['react-dom'] = {
-        version: api.appData.react.version,
-        matches: ['react-dom'],
-        subpaths: [],
-      };
+      if (api.appData.deps) {
+        api.appData.deps['react-dom'] = {
+          version: api.appData.react.version,
+          matches: ['react-dom'],
+          subpaths: [],
+        };
+      }
     },
   });
 
@@ -104,17 +106,4 @@ export default (api: IApi) => {
 
     return memo;
   });
-
-  // 添加运行时插件键
-  // api.addRuntimePluginKey(() => [
-  //   'patchClientRoutes',
-  //   'patchRoutes',
-  //   'render',
-  //   'onRouteChange',
-  //   'modifyContextOpts',
-  //   'modifyRendererProps',
-  //   'modifyRouterProps',
-  //   'modifyAppRenderProps',
-  //   'rootContainer',
-  // ]);
 };

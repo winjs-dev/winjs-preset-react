@@ -1,8 +1,8 @@
+import assert from 'node:assert';
+import path from 'node:path';
 import { searchForIcon } from '@iconify/utils/lib/loader/modern';
-import { IconifyLoaderOptions } from '@iconify/utils/lib/loader/types';
+import type { IconifyLoaderOptions } from '@iconify/utils/lib/loader/types';
 import { fsExtra, logger, resolve } from '@winner-fed/utils';
-import assert from 'assert';
-import path from 'path';
 
 interface IOpts {
   cwd: string;
@@ -19,7 +19,7 @@ export async function loadIcon(collection: string, icon: string, opts: IOpts) {
         basedir: opts.cwd,
         paths: [path.join(__dirname, '../../../node_modules')],
       });
-    } catch (e) {}
+    } catch {}
     return iconPath;
   }
 

@@ -1,8 +1,20 @@
 import { defineConfig } from '@rslib/core';
 
 export default defineConfig({
+  source: {
+    entry: {
+      index: './src/**/*.ts',
+    },
+  },
+  output: {
+    target: 'node'
+  },
   lib: [
-    { format: 'esm', syntax: 'es2021', dts: true },
-    { format: 'cjs', syntax: 'es2021' },
+    {
+      format: 'cjs',
+      syntax: 'es2021',
+      dts: { bundle: false },
+      bundle: false,
+    },
   ],
 });

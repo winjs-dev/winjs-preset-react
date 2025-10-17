@@ -1,5 +1,5 @@
-import { dirname } from 'path';
-import type { IApi } from 'win';
+import { dirname } from 'node:path';
+import type { IApi } from '@winner-fed/winjs';
 import { resolveProjectDep } from '../../utils/resolveProjectDep';
 
 export default (api: IApi) => {
@@ -24,8 +24,8 @@ export default (api: IApi) => {
   });
 
   api.onCheck(() => {
-    let reactMajorVersion = api.appData.react?.version?.split('.')[0];
-    if (reactMajorVersion && parseInt(reactMajorVersion) < 19) {
+    const reactMajorVersion = api.appData.react?.version?.split('.')[0];
+    if (reactMajorVersion && Number.parseInt(reactMajorVersion, 10) < 19) {
       throw new Error(
         `React Compiler (forget) 仅兼容 React 19 及以上版本，请升级您的 React 版本。`,
       );
@@ -42,14 +42,14 @@ export default (api: IApi) => {
         cwd: api.cwd,
         dep: BABEL_PLUGIN_NAME,
       }) || dirname(require.resolve(`${BABEL_PLUGIN_NAME}/package.json`));
-  } catch (e) {
+  } catch {
     // 如果找不到插件，使用内置版本
     libPath = dirname(require.resolve(`${BABEL_PLUGIN_NAME}/package.json`));
   }
 
   api.modifyConfig((memo) => {
     if (api.userConfig.react?.forget) {
-      let ReactCompilerConfig =
+      const ReactCompilerConfig =
         api.userConfig.react.forget.ReactCompilerConfig || {};
       return {
         ...memo,
