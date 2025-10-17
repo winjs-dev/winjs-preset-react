@@ -35,7 +35,6 @@
     "lint": "biome check .",
     "lint:write": "biome check . --write",
     "prepare": "simple-git-hooks && npm run build",
-    "test": "playwright test",
     "bump": "bumpp"
   },
   "simple-git-hooks": {
@@ -43,7 +42,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.1",
-    "@playwright/test": "^1.53.2",
     "@rsbuild/core": "^1.4.2",
     "@rslib/core": "^0.10.4",
     "@types/node": "^22.15.34",
