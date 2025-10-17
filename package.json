@@ -3,14 +3,19 @@
   "description": "React support for WinJS framework",
   "keywords": [
     "winjs",
-    "plugin",
-    "template",
-    "winner-fed",
-    "winjs-dev",
-    "rslib",
+    "preset",
+    "react",
+    "react-dom",
+    "react-router",
+    "jsx",
+    "tsx",
+    "webpack",
+    "vite",
     "rsbuild",
-    "typescript",
-    "biome"
+    "svgr",
+    "fast-refresh",
+    "react-compiler",
+    "typescript"
   ],
   "version": "0.0.0",
   "repository": {
