@@ -66,7 +66,7 @@ export default function Counter() {
 
 模块通过拦截不同打包器的配置钩子，注入 `unplugin-auto-import` 插件：
 
-- **Webpack**: 通过 `api.modifyWebpackConfig` 注入
+- **Webpack**: 通过 `api.chainWebpack` 注入（使用 webpack-chain 避免类型冲突）
 - **Vite**: 通过 `api.modifyViteConfig` 注入
 - **Rsbuild**: 通过 `api.modifyRsbuildConfig` 修改 `tools.rspack` 配置注入
 
@@ -74,4 +74,14 @@ export default function Counter() {
 - `unplugin-auto-import/webpack`
 - `unplugin-auto-import/vite`
 - `unplugin-auto-import/rspack`
+
+### 关键技术点
+
+1. **Webpack 类型兼容性**：由于 WinJS 使用编译后的 webpack 类型，直接使用 `modifyWebpackConfig` 会导致类型冲突。因此使用 `chainWebpack` 和 webpack-chain 来添加插件，避免类型问题。
+
+2. **自动生成文件**：启用 `dts: true` 和 `eslintrc.enabled: true` 后，会自动生成：
+   - `auto-imports.d.ts` - TypeScript 全局类型声明
+   - `.eslintrc-auto-import.json` - ESLint 全局变量配置
+
+3. **动态配置**：根据 `api.userConfig.mpa` 判断是否为 MPA 模式，动态决定是否导入 React Router API。
 

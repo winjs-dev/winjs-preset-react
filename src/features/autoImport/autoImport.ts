@@ -58,17 +58,16 @@ export default (api: IApi) => {
 
     return {
       imports,
-      dts: false, // WinJS 会处理类型定义
+      dts: true,
       eslintrc: {
-        enabled: false,
+        enabled: true,
       },
     };
   };
 
-  // Webpack 集成
-  api.modifyWebpackConfig((config) => {
-    config.plugins = config.plugins || [];
-    config.plugins.push(AutoImportWebpack(getAutoImportConfig()));
+  // Webpack 集成 - 使用 chainWebpack 避免类型冲突
+  api.chainWebpack((config) => {
+    config.plugin('auto-import').use(AutoImportWebpack(getAutoImportConfig()));
     return config;
   });
 
