@@ -58,9 +58,10 @@ export default (api: IApi) => {
 
     return {
       imports,
-      dts: true,
+      dts: './auto-imports.d.ts',
       eslintrc: {
         enabled: true,
+        filepath: './.eslintrc-auto-import.json',
       },
     };
   };
@@ -81,17 +82,25 @@ export default (api: IApi) => {
   // Rsbuild 集成 (基于 Rspack)
   api.modifyRsbuildConfig((config: any) => {
     config.tools = config.tools || {};
-    const originalRspack = config.tools.rspack;
-
-    config.tools.rspack = (rspackCfg: any) => {
-      const cfg =
-        typeof originalRspack === 'function'
-          ? originalRspack(rspackCfg)
-          : originalRspack || rspackCfg;
-      cfg.plugins = cfg.plugins || [];
-      cfg.plugins.push(AutoImportRspack(getAutoImportConfig()));
-      return cfg;
+    
+    // 保存之前的配置函数
+    const prevRspack = config.tools.rspack;
+    
+    config.tools.rspack = (rspackConfig: any, context: any) => {
+      // 先执行之前的配置（如果存在）
+      let resultConfig = rspackConfig;
+      if (typeof prevRspack === 'function') {
+        resultConfig = prevRspack(rspackConfig, context);
+      }
+      
+      // 使用 appendPlugins 添加插件
+      if (context && context.appendPlugins) {
+        context.appendPlugins(AutoImportRspack(getAutoImportConfig()));
+      }
+      
+      return resultConfig;
     };
+    
     return config;
   });
 };
