@@ -32,6 +32,7 @@ export default (api: IApi) => {
       // React特有功能
       require.resolve('./features/forget/forget'),
       require.resolve('./features/icons/icons'),
+      require.resolve('./features/autoImport/autoImport'),
     ],
   };
 };

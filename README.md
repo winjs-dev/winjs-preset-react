@@ -23,7 +23,7 @@ npm install @winner-fed/preset-react
 
 ## 基础用法
 
-在 `win.config.ts` 中添加：
+在 `.winrc.ts` 中添加：
 
 ```ts
 import { defineConfig } from 'win';
