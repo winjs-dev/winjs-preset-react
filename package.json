@@ -64,7 +64,7 @@
     "@winner-fed/bundler-vite": "*",
     "@babel/plugin-transform-react-jsx": "7.27.1",
     "@babel/preset-react": "7.27.1",
-    "@rsbuild/plugin-react": "1.4.1",
+    "@rsbuild/plugin-react": "1.4.2",
     "@rsbuild/plugin-svgr": "1.2.2",
     "@vitejs/plugin-react": "^4.3.4",
     "@winner-fed/renderer-react": "*",
